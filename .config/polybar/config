@@ -1,0 +1,352 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+
+
+
+;========================Bar===============================
+
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+include-file = $HOME/.config/polybar/colors
+
+[config]
+# Monitor settings
+monitor = ${env:MONITOR:eDP}
+
+
+# Bar config, applied globally
+width = 100%
+height = 27
+offset-x = 0%
+offset-y = 0%
+radius = 0.0
+
+
+fixed-center = true
+overide-redirect = true
+wm-restack = bspwm
+
+# module list:
+# alsa: Display current volume
+# backlight: Display screen brightness
+# date: Display date
+# battery: Battery info
+# keyboard: Keyboard and Capslock indicator
+# bspwm: bspwm workspace icons
+# title: title of the active window
+# 
+[bar/bar1]
+monitor = ${config.monitor}
+width = ${config.width}
+height = ${config.height}
+offset-x = ${config.offset-x}
+offset-y = ${config.offset-x}
+radius = ${config.radius}
+fixed-center = ${config.fixed-center} 
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 4
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 2
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = SF Pro Text:size=10;0
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = FontAwesome:size=10;0
+
+modules-left = powermenu bspwm i3 spotify
+modules-center = date
+modules-right = backlight alsa pulseaudio xkeyboard wlan battery 
+
+tray-position = right
+tray-padding = 2
+;tray-background = #0063ff
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+;==========================================================
+
+;====================Modules===============================
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+label-occupied = %index%
+label-occupied-padding = 2
+
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = 
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+
+
+[module/backlight]
+type = internal/backlight
+card = amdgpu_bl0
+format = <label> 
+label =  %percentage%%
+
+# bar-width = 10
+# bar-indicator = |
+# bar-indicator-foreground = ${colors.foreground}
+# bar-indicator-font = 2
+# bar-fill = ─
+# bar-fill-font = 2
+# bar-fill-foreground = ${colors.primary}
+# bar-empty = ─
+# bar-empty-font = 2
+# bar-empty-foreground = ${colors.foreground-alt}
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+
+format-connected = <label-connected>
+label-connected =  %downspeed% | %essid% 
+
+format-disconnected = <label-disconnected> 
+label-disconneced =  No signal
+format-disconnect-foreground = ${colors.warning}
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.secondary}
+
+label = %date% %time%
+
+[module/alsa]
+type = internal/alsa
+
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+label-volume-foreground = ${colors.foreground}
+
+label-muted =   %percentage%%
+label-muted-foreground = ${colors.foreground}
+label-muted-background = ${colors.alert}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+ramp-headphones-0 = l
+ramp-headphones-1 = h
+
+# bar-volume-width = 10
+# bar-volume-foreground-0 = ${colors.primary}
+# bar-volume-foreground-1 = ${colors.primary}
+# bar-volume-foreground-2 = ${colors.primary}
+# bar-volume-foreground-3 = ${colors.primary}
+# bar-volume-foreground-4 = ${colors.primary}
+# bar-volume-foreground-5 = ${colors.danger}
+# bar-volume-foreground-6 = ${colors.alert}
+# bar-volume-gradient = false
+# bar-volume-indicator = |
+# bar-volume-indicator-font = 2
+# bar-volume-fill = ─
+# bar-volume-fill-font = 2
+# bar-volume-empty = ─
+# bar-volume-empty-font = 2
+# bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+
+label-layout = %name% 
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.danger}
+
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ACAD
+full-at = 95
+
+format-charging-prefix = " "
+format-charging-prefix-foreground = ${colors.foreground}
+format-charging = <ramp-capacity> <label-charging>
+label-charging = %percentage%% 
+label-charging-foreground = ${colors.foreground}
+format-discharging =  <ramp-capacity> <label-discharging> 
+label-discharging = %percentage%% 
+label-discharging-foreground = ${colors.foreground-alt}
+format-full = <label-full>
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground}
+label-full = Fully charged
+label-full-foreground = ${colors.foreground}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-0-foreground = ${colors.alert}
+ramp-capacity-1-foreground = ${colors.danger}
+ramp-capacity-2-foreground = ${colors.warning}
+ramp-capacity-3-foreground = ${colors.foreground}
+ramp-capacity-4-foreground = ${colors.foreground}
+
+animation-charging-0 =  
+animation-charging-1 =  
+animation-charging-2 =  
+animation-charging-foreground = ${colors.foreground}
+animation-charging-framerate = 750
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-foreground = ${colors.foreground} 
+animation-discharging-framerate = 750
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = " "
+format = <label>
+format-foreground= ${colors.success} 
+exec = python $HOME/.config/polybar/scripts/spotify_status.py -f '{play_pause} {artist} - {song}' -t 45
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = ""
+label-open-foreground = ${colors.secondary}
+label-close = 
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+; vim:ft=dosini
