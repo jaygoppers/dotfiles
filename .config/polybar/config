@@ -191,8 +191,8 @@ format-connected = <label-connected>
 label-connected =  %downspeed% | %essid% 
 
 format-disconnected = <label-disconnected> 
-label-disconneced =  No signal
-format-disconnect-foreground = ${colors.warning}
+label-disconnected = " No signal"
+format-disconnected-foreground = ${colors.warning}
 
 [module/date]
 type = internal/date
@@ -224,8 +224,8 @@ ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
 
-ramp-headphones-0 = l
-ramp-headphones-1 = h
+# ramp-headphones-0 = l
+# ramp-headphones-1 = h
 
 # bar-volume-width = 10
 # bar-volume-foreground-0 = ${colors.primary}
@@ -260,7 +260,7 @@ label-indicator-padding = 2
 label-indicator-margin = 1
 label-indicator-background = ${colors.danger}
 
-
+	
 [module/battery]
 type = internal/battery
 battery = BAT1
@@ -288,7 +288,7 @@ ramp-capacity-3 = 
 ramp-capacity-4 = 
 ramp-capacity-0-foreground = ${colors.alert}
 ramp-capacity-1-foreground = ${colors.danger}
-ramp-capacity-2-foreground = ${colors.warning}
+ramp-capacity-2-foreground = ${colors.foreground}
 ramp-capacity-3-foreground = ${colors.foreground}
 ramp-capacity-4-foreground = ${colors.foreground}
 
