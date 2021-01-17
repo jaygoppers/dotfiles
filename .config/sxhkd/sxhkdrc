@@ -12,10 +12,9 @@ super + Escape
 
 # Audio control
 XF86Audio{Raise,Lower}Volume
-	amixer -q set Master {5%+,5%-} unmute
-
+	pactl set-sink-volume 0 {+5%,-5%}
 XF86AudioMute
-	amixer -q set Master toggle
+	pactl set-sink-mute 0 toggle
 
 # Brightness control
 XF86MonBrightness{Up,Down}
