@@ -23,7 +23,7 @@
 
 
 [global/wm]
-margin-top = 5
+margin-top = 0
 margin-bottom = 0 
 include-file = $HOME/.config/polybar/colors
 
@@ -52,7 +52,7 @@ wm-restack = bspwm
 # keyboard: Keyboard and Capslock indicator
 # bspwm: bspwm workspace icons
 # title: title of the active window
-# 
+ 
 [bar/bar1]
 monitor = ${config.monitor}
 width = ${config.width}
@@ -71,8 +71,8 @@ line-color = #f00
 border-size = 0
 border-color = ${colors.background} 
 
-padding-left = 2
-padding-right = 2
+padding-left = 0
+padding-right = 0
 
 module-margin-left = 1
 module-margin-right = 2
@@ -81,27 +81,59 @@ font-0 = SF Pro Text:size=10;0
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = FontAwesome:size=10;0
 
-modules-left = powermenu bspwm i3 spotify
-modules-center = date
-modules-right = backlight pulseaudio xkeyboard wlan battery 
+modules-left = powermenu spotify
+modules-center = 
+modules-right = backlight pulseaudio wlan battery date 
 
 tray-position = right
 tray-padding = 2
 ;tray-background = #0063ff
 
-;wm-restack = bspwm
-;wm-restack = i3
+cursor-click = pointer
+cursor-scroll = ns-resize
 
-;override-redirect = true
+[bar/bar2]
+monitor = ${config.monitor}
+width = ${config.width}
+height = ${config.height}
+offset-x = ${config.offset-x}
+offset-y = ${config.offset-x}
+radius = ${config.radius}
+fixed-center = ${config.fixed-center} 
 
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
+background = ${colors.background}
+foreground = ${colors.foreground}
 
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
+line-size = 4
+line-color = #f00
+
+border-size = 0
+border-color = ${colors.background} 
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = SF Pro Text:size=10;0
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = FontAwesome:size=10;0
+
+modules-left = bspwm
+modules-center = 
+modules-right = xkeyboard  
+
+tray-position = right
+tray-padding = 2
+;tray-background = #0063ff
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+bottom = true
+
+
 ;==========================================================
 
 ;====================Modules===============================
@@ -109,8 +141,9 @@ cursor-scroll = ns-resize
 type = internal/bspwm
 
 label-focused = %index%
+label-focused-foreground = ${colors.foreground-alt}
 label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
+label-focused-underline= ${colors.foreground-alt}
 label-focused-padding = 2
 
 label-occupied = %index%
@@ -120,46 +153,9 @@ label-urgent = %index%!
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
-label-empty = 
-label-empty-foreground = ${colors.foreground-alt}
+label-empty = %index% 
+label-empty-foreground = ${colors.foreground}
 label-empty-padding = 2
-
-; Separator in between workspaces
-; label-separator = |
-
-[module/i3]
-type = internal/i3
-format = <label-state> <label-mode>
-index-sort = true
-wrapping-scroll = false
-
-; Only show workspaces on the same output as the bar
-;pin-workspaces = true
-
-label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
-
-; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
-
-; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
-label-unfocused-padding = 2
-
-; visible = Active workspace on unfocused monitor
-label-visible = %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
-
-; urgent = Workspace with urgency hint set
-label-urgent = %index%
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
 
 ; Separator in between workspaces
 ; label-separator = |
@@ -192,7 +188,7 @@ label-connected =  %downspeed% | %essid%
 
 format-disconnected = <label-disconnected> 
 label-disconnected = " No signal"
-format-disconnected-foreground = ${colors.warning}
+format-disconnected-foreground = ${colors.alert}
 
 [module/date]
 type = internal/date
@@ -278,7 +274,7 @@ format-prefix-foreground = ${colors.foreground}
 label-layout = %name% 
 label-indicator-padding = 2
 label-indicator-margin = 1
-label-indicator-background = ${colors.danger}
+label-indicator-background = ${colors.background-alt}
 
 	
 [module/battery]
@@ -307,7 +303,7 @@ ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
 ramp-capacity-0-foreground = ${colors.alert}
-ramp-capacity-1-foreground = ${colors.danger}
+ramp-capacity-1-foreground = ${colors.alert}
 ramp-capacity-2-foreground = ${colors.foreground}
 ramp-capacity-3-foreground = ${colors.foreground}
 ramp-capacity-4-foreground = ${colors.foreground}
@@ -329,7 +325,7 @@ type = custom/script
 interval = 1
 format-prefix = " "
 format = <label>
-format-foreground= ${colors.success} 
+format-foreground= ${colors.foreground} 
 exec = python $HOME/.config/polybar/scripts/spotify_status.py -f '{play_pause} {artist} - {song}' -t 45
 
 [module/powermenu]
@@ -339,10 +335,12 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = ""
-label-open-foreground = ${colors.secondary}
-label-close = 
-label-close-foreground = ${colors.secondary}
+label-open = "    "
+label-open-foreground = ${colors.foreground}
+label-open-background = ${colors.background}
+label-close = "    "
+label-close-foreground = ${colors.foreground}
+label-close-background = ${colors.background}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
 

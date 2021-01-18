@@ -1,37 +1,10 @@
 ; vim:ft=dosini
-[nord-theme]
-nord0 = #2E3440
-nord1 = #3B4252
-nord2 = #434C5E
-nord3 = #4C566A
-; Snow Storm
-nord4 = #D8DEE9
-nord5 = #E5E9F0
-nord6 = #ECEFF4
-; Frost
-nord7 = #8FBCBB
-nord8 = #88c0d0
-nord9 = #81A1C1
-nord10 = #5E81AC
-; Aurora
-nord11 = #BF616A
-nord12 = #D08770
-nord13 = #EBCB8B
-nord14 = #A3BE8C
-nord15 = #B48EAD
 
 [colors]
-background = ${nord-theme.nord0}
-background-alt = ${nord-theme.nord1}
-foreground = ${nord-theme.nord6}
-foreground-alt = ${nord-theme.nord4}
-primary = ${nord-theme.nord9}
-primary-alt = ${nord-theme.nord7}
-secondary = ${nord-theme.nord10}
-secondary-alt = ${nord-theme.nord8}
-warning = ${nord-theme.nord13}
-danger = ${nord-theme.nord12}
-alert = ${nord-theme.nord11}
-success = ${nord-theme.nord14}
-uncommon = ${nord-theme.nord15}
-
+background = #f9181818
+background-alt = #f9585858
+foreground = #d8d8d8
+foreground-alt = #f8f8f8
+primary = #f7ca88
+secondary = #ba8baf
+alert = #ab4642

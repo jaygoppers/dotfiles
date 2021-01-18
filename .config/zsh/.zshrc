@@ -6,7 +6,7 @@ export TERMINAL='alacritty'
 export BROWSER='firefox'
 
 # Prompt
-PROMPT='%F{blue}%1~%f %F{cyan}>%f '
+PROMPT='%F{blue}%3~%f %F{cyan}>%f '
 ## Git settings
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
