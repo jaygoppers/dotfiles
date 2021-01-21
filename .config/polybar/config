@@ -27,109 +27,64 @@ margin-top = 0
 margin-bottom = 0 
 include-file = $HOME/.config/polybar/colors
 
-[config]
+
+
+[bar/base]
 # Monitor settings
 monitor = ${env:MONITOR:eDP}
-
-
 # Bar config, applied globally
-width = 100%
 height = 27
-offset-x = 0%
 offset-y = 0%
 radius = 0.0
 
+font-0 = SF Pro Text:size=10;0
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = FontAwesome:size=10;0
 
-fixed-center = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+module-margin-left = 1
+module-margin-right = 2
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
 overide-redirect = true
 wm-restack = bspwm
 
-# module list:
-# alsa: Display current volume
-# backlight: Display screen brightness
-# date: Display date
-# battery: Battery info
-# keyboard: Keyboard and Capslock indicator
-# bspwm: bspwm workspace icons
-# title: title of the active window
- 
-[bar/bar1]
-monitor = ${config.monitor}
-width = ${config.width}
-height = ${config.height}
-offset-x = ${config.offset-x}
-offset-y = ${config.offset-x}
-radius = ${config.radius}
-fixed-center = ${config.fixed-center} 
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-line-size = 4
-line-color = #f00
-
-border-size = 0
-border-color = ${colors.background} 
-
-padding-left = 0
-padding-right = 0
-
-module-margin-left = 1
-module-margin-right = 2
-
-font-0 = SF Pro Text:size=10;0
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = FontAwesome:size=10;0
-
+[bar/music]
+inherit = bar/base
+fixed-center = false 
+width = 50%
+offset-x = 0%
 modules-left = powermenu spotify
-modules-center = 
-modules-right = backlight pulseaudio wlan battery date 
 
+[bar/tray]
+inherit = bar/base
+enable-ipc = 
+offset-x = 50%
+width = 30%
 tray-position = right
 tray-padding = 2
-;tray-background = #0063ff
+modules-right = backlight pulseaudio 
 
-cursor-click = pointer
-cursor-scroll = ns-resize
+[bar/date]
+inherit = bar/base
+offset-x = 80%
+width = 20%
+modules-right =  battery date 
 
-[bar/bar2]
-monitor = ${config.monitor}
-width = ${config.width}
-height = ${config.height}
-offset-x = ${config.offset-x}
-offset-y = ${config.offset-x}
-radius = ${config.radius}
-fixed-center = ${config.fixed-center} 
-
-background = ${colors.background}
-foreground = ${colors.foreground}
+[bar/wsnumber]
+inherit = bar/base
+fixed-center = true 
+width = 100%
 
 line-size = 4
 line-color = #f00
-
-border-size = 0
-border-color = ${colors.background} 
-
-padding-left = 0
-padding-right = 0
-
-module-margin-left = 1
-module-margin-right = 2
-
-font-0 = SF Pro Text:size=10;0
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = FontAwesome:size=10;0
 
 modules-left = bspwm
-modules-center = 
 modules-right = xkeyboard  
-
-tray-position = right
-tray-padding = 2
-;tray-background = #0063ff
-
-cursor-click = pointer
-cursor-scroll = ns-resize
 
 bottom = true
 

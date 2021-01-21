@@ -5,9 +5,14 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 # Starting application
 $HOME/.config/polybar/launch.sh
 picom &
+dunst &
 
 # Setting up wallpaper
 feh --bg-scale ~/Pictures/wallpapers-ii/wallpapers/ricardo-braham-turtles-in-playa-del-carmen-mexico.jpg &
+
+# Setting up Pulseaudio system tray
+# pasystray &
+
 # Updating image for lockscreen
 # betterlockscreen -u ~/Documents/wallpapers/nord/004.jpg & 
 
