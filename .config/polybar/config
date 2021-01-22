@@ -87,7 +87,7 @@ bottom = true
 type = internal/bspwm
 
 label-focused = %index%
-label-focused-foreground = ${colors.foreground-alt}
+label-focused-foreground = ${colors.foreground}
 label-focused-background = ${colors.background-alt}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 2
@@ -124,6 +124,7 @@ label-connected =  %essid%
 
 format-disconnected = <label-disconnected> 
 label-disconnected = " No signal"
+label-disconnected-underline = ${colors.alert}
 format-disconnected-foreground = ${colors.alert}
 
 [module/date]
@@ -149,8 +150,10 @@ label-volume = %percentage:3:3%%
 label-volume-foreground = ${colors.foreground}
 
 label-muted =   "%percentage:3:3%%"
-label-muted-foreground = ${colors.foreground}
-label-muted-background = ${colors.alert}
+label-muted-foreground = ${colors.alert}
+label-muted-background = ${colors.background}
+label-muted-underline = ${colors.alert}
+
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
@@ -201,35 +204,11 @@ tail = true
 interval = 1
 
 [module/powermenu]
-type = custom/menu
-
-expand-right = true
+type = custom/scripts
 
 format-spacing = 1
 
-label-open = ""
-label-open-foreground = ${colors.foreground}
-label-open-background = ${colors.background}
-label-close = ""
-label-close-foreground = ${colors.foreground}
-label-close-background = ${colors.background}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
+# Use rofi
 
 [settings]
 screenchange-reload = true
