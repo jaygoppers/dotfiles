@@ -1,193 +1,123 @@
-configuration {
-	modi: "window,run,ssh,drun,keys";
-/*	width: 50;*/
-/*	lines: 15;*/
-/*	columns: 1;*/
-	font: "SF Pro Text 12";
-/*	bw: 1;*/
-/*	location: 0;*/
-/*	padding: 5;*/
-/*	yoffset: 0;*/
-/*	xoffset: 0;*/
-/*	fixed-num-lines: true;*/
-/*	show-icons: false;*/
-	terminal: "alacritty";
-/*	ssh-client: "ssh";*/
-/*	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
-/*	run-command: "{cmd}";*/
-/*	run-list-command: "";*/
-/*	run-shell-command: "{terminal} -e {cmd}";*/
-/*	window-command: "wmctrl -i -R {window}";*/
-/*	window-match-fields: "all";*/
-	icon-theme:"Papirus-Dark-nordic-blue-folders" ;
-/*	drun-match-fields: "name,generic,exec,categories";*/
-/*	drun-show-actions: false;*/
-/*	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";*/
-/*	disable-history: false;*/
-/*	ignored-prefixes: "";*/
-/*	sort: false;*/
-/*	sorting-method: ;*/
-/*	case-sensitive: false;*/
-/*	cycle: true;*/
-/*	sidebar-mode: false;*/
-/*	eh: 1;*/
-/*	auto-select: false;*/
-/*	parse-hosts: false;*/
-/*	parse-known-hosts: true;*/
-/*	combi-modi: "window,run";*/
-/*	matching: "normal";*/
-/*	tokenize: true;*/
-/*	m: "-5";*/
-/*	line-margin: 2;*/
-/*	line-padding: 1;*/
-/*	filter: ;*/
-/*	separator-style: "dash";*/
-/*	hide-scrollbar: false;*/
-/*	fullscreen: false;*/
-/*	fake-transparency: false;*/
-/*	dpi: -1;*/
-/*	threads: 0;*/
-/*	scrollbar-width: 8;*/
-/*	scroll-method: 0;*/
-/*	fake-background: "screenshot";*/
-/*	window-format: "{w}    {c}   {t}";*/
-/*	click-to-exit: true;*/
-/*	show-match: true;*/
-/*	theme: ;*/
-/*	color-normal: ;*/
-/*	color-urgent: ;*/
-/*	color-active: ;*/
-/*	color-window: ;*/
-/*	max-history-size: 25;*/
-/*	combi-hide-mode-prefix: false;*/
-/*	matching-negate-char: '-' /* unsupported */;*/
-/*	cache-dir: ;*/
-/*	pid: "/run/user/1000/rofi.pid";*/
-/*	display-window: ;*/
-/*	display-windowcd: ;*/
-/*	display-run: ;*/
-/*	display-ssh: ;*/
-/*	display-drun: ;*/
-/*	display-combi: ;*/
-/*	display-keys: ;*/
-/*	kb-primary-paste: "Control+V,Shift+Insert";*/
-/*	kb-secondary-paste: "Control+v,Insert";*/
-/*	kb-clear-line: "Control+w";*/
-/*	kb-move-front: "Control+a";*/
-/*	kb-move-end: "Control+e";*/
-/*	kb-move-word-back: "Alt+b,Control+Left";*/
-/*	kb-move-word-forward: "Alt+f,Control+Right";*/
-/*	kb-move-char-back: "Left,Control+b";*/
-/*	kb-move-char-forward: "Right,Control+f";*/
-/*	kb-remove-word-back: "Control+Alt+h,Control+BackSpace";*/
-/*	kb-remove-word-forward: "Control+Alt+d";*/
-/*	kb-remove-char-forward: "Delete,Control+d";*/
-/*	kb-remove-char-back: "BackSpace,Shift+BackSpace,Control+h";*/
-/*	kb-remove-to-eol: "Control+k";*/
-/*	kb-remove-to-sol: "Control+u";*/
-/*	kb-accept-entry: "Control+j,Control+m,Return,KP_Enter";*/
-/*	kb-accept-custom: "Control+Return";*/
-/*	kb-accept-alt: "Shift+Return";*/
-/*	kb-delete-entry: "Shift+Delete";*/
-/*	kb-mode-next: "Shift+Right,Control+Tab";*/
-/*	kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab";*/
-/*	kb-row-left: "Control+Page_Up";*/
-/*	kb-row-right: "Control+Page_Down";*/
-/*	kb-row-up: "Up,Control+p,ISO_Left_Tab";*/
-/*	kb-row-down: "Down,Control+n";*/
-/*	kb-row-tab: "Tab";*/
-/*	kb-page-prev: "Page_Up";*/
-/*	kb-page-next: "Page_Down";*/
-/*	kb-row-first: "Home,KP_Home";*/
-/*	kb-row-last: "End,KP_End";*/
-/*	kb-row-select: "Control+space";*/
-/*	kb-screenshot: "Alt+S";*/
-/*	kb-ellipsize: "Alt+period";*/
-/*	kb-toggle-case-sensitivity: "grave,dead_grave";*/
-/*	kb-toggle-sort: "Alt+grave";*/
-/*	kb-cancel: "Escape,Control+g,Control+bracketleft";*/
-/*	kb-custom-1: "Alt+1";*/
-/*	kb-custom-2: "Alt+2";*/
-/*	kb-custom-3: "Alt+3";*/
-/*	kb-custom-4: "Alt+4";*/
-/*	kb-custom-5: "Alt+5";*/
-/*	kb-custom-6: "Alt+6";*/
-/*	kb-custom-7: "Alt+7";*/
-/*	kb-custom-8: "Alt+8";*/
-/*	kb-custom-9: "Alt+9";*/
-/*	kb-custom-10: "Alt+0";*/
-/*	kb-custom-11: "Alt+exclam";*/
-/*	kb-custom-12: "Alt+at";*/
-/*	kb-custom-13: "Alt+numbersign";*/
-/*	kb-custom-14: "Alt+dollar";*/
-/*	kb-custom-15: "Alt+percent";*/
-/*	kb-custom-16: "Alt+dead_circumflex";*/
-/*	kb-custom-17: "Alt+ampersand";*/
-/*	kb-custom-18: "Alt+asterisk";*/
-/*	kb-custom-19: "Alt+parenleft";*/
-/*	kb-select-1: "Super+1";*/
-/*	kb-select-2: "Super+2";*/
-/*	kb-select-3: "Super+3";*/
-/*	kb-select-4: "Super+4";*/
-/*	kb-select-5: "Super+5";*/
-/*	kb-select-6: "Super+6";*/
-/*	kb-select-7: "Super+7";*/
-/*	kb-select-8: "Super+8";*/
-/*	kb-select-9: "Super+9";*/
-/*	kb-select-10: "Super+0";*/
-/*	ml-row-left: "ScrollLeft";*/
-/*	ml-row-right: "ScrollRight";*/
-/*	ml-row-up: "ScrollUp";*/
-/*	ml-row-down: "ScrollDown";*/
-/*	me-select-entry: "MousePrimary";*/
-/*	me-accept-entry: "MouseDPrimary";*/
-/*	me-accept-custom: "Control+MouseDPrimary";*/
-}
-
-
+/**
+ * Author: Primetoxinz
+ */
 * {
-  background-color: #2E3440; 
-  border-color: #434C5E;
-  text-color: #D8DEE9;
-  spacing: 0;
-  width: 50%;
-  height: 35%;
+    text-color:                  #ebdbb2;
+    background-color:            #282828;
+    lightbg:                     #928374;
+    red:                         #cc241d;
+    orange:                      #d79921; 
+    blue:                        #458588; 
+
+    selected-normal-foreground:  @foreground;
+    normal-foreground:           @foreground;
+    alternate-normal-background: @background;
+    selected-urgent-foreground:  @foreground;
+    urgent-foreground:           @foreground;
+    alternate-urgent-background: @background;
+    active-foreground:           @foreground;
+    selected-active-foreground:  @foreground;
+    alternate-normal-foreground: @foreground;
+    alternate-active-background: @lightbg;
+    bordercolor:                 @foreground;
+    normal-background:           @background;
+    selected-normal-background:  @lightbg;
+    separatorcolor:              @orange;
+    spacing:                     2;
+    urgent-background:           @red;
+    alternate-urgent-foreground: @foreground;
+    selected-urgent-background:  @red;
+    alternate-active-foreground: @foreground;
+    selected-active-background:  @lightbg;
+    active-background:           @orange;
+}
+#window {
+    border:     0;
+    text-color: @foreground;
+    background-color: rgba ( 0, 0, 0, 0 % );
+    padding:    5;
+    text-color: @bordercolor;
+    background-color: @background;
+}
+#mainbox {
+    border:  0;
+    padding: 0;
+}
+#message {
+    border:     1px dash 0px 0px ;
+    text-color: @separatorcolor;
+    padding:    2px 0px 0px ;
+}
+#textbox {
+    text-color: @foreground;
+}
+#listview {
+    fixed-height: 0;
+    border:       2px 0px 0px ;
+    padding:      2px 0px 0px ;
+    text-color: @separatorcolor;
+}
+#element {
+    border: 0;
+}
+#element.normal.normal {
+    text-color: @normal-foreground;
+    background-color: @normal-background;
+}
+#element.normal.urgent {
+    text-color: @urgent-foreground;
+    background-color: @urgent-background;
+}
+#element.normal.active {
+    text-color: @active-foreground;
+    background-color: @active-background;
+}
+#element.selected.normal {
+    text-color: @selected-normal-foreground;
+    background-color: @selected-normal-background;
+}
+#element.selected.urgent {
+    text-color: @selected-urgent-foreground;
+    background-color: @selected-urgent-background;
+}
+#element.selected.active {
+    text-color: @selected-active-foreground;
+    background-color: @selected-active-background;
+}
+#element.alternate.normal {
+    text-color: @alternate-normal-foreground;
+    background-color: @alternate-normal-background;
+}
+#element.alternate.urgent {
+    text-color: @alternate-urgent-foreground;
+    background-color: @alternate-urgent-background;
+}
+#element.alternate.active {
+    text-color: @alternate-active-foreground;
+    background-color: @alternate-active-background;
+}
+#mode-switcher {
+    border: 1px dash 0px 0px ;
+}
+#button selected {
+    text-color: @selected-normal-foreground;
+    background-color: @selected-normal-background;
+}
+#inputbar {
+    spacing: 0;
+    border: 0px ;
+}
+#button normal {
+    text-color: @foreground;
 }
 
-inputbar {
-  border: 0 0 1px 0;
-  children: [prompt,entry];
+#inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
 }
-
-prompt {
-  padding: 8px;
-  border: 0 1px 0 0;
-}
-
-textbox {
-  background-color: #2E3440;
-  border: 0 0 1px 0;
-  border-color: #434C5E;
-  padding: 4px 8px;
-}
-
-entry {
-  padding: 8px;
-}
-
-listview {
-  cycle: false;
-  margin: 0 0 -1px 0;
-  scrollbar: true;
-  columns: 1;
-}
-
-element {
-  border: 0 0 1px 0;
-  padding: 8px;
-}
-
-element selected {
-  background-color: #3B4252;
+#textbox-prompt-colon {
+    expand:     false;
+    str:        ":";
+    margin:     0px 0.3em 0em 0em ;
+    text-color: @normal-foreground;
 }
 
