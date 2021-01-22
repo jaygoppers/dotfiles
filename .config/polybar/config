@@ -17,81 +17,72 @@
 ;==========================================================
 
 
-
-
-;========================Bar===============================
-
-
 [global/wm]
 margin-top = 0
 margin-bottom = 0 
+
 include-file = $HOME/.config/polybar/colors
 
+;  _                    
+; | |__   __ _ _ __ ___ 
+; | '_ \ / _` | '__/ __|
+; | |_) | (_| | |  \__ \
+; |_.__/ \__,_|_|  |___/
 
 
 [bar/base]
 # Monitor settings
 monitor = ${env:MONITOR:eDP}
+
 # Bar config, applied globally
-height = 27
-offset-y = 0%
+height = 30
+width = 99%
+offset-x = 0.5%
+offset-y =0.5%
 radius = 0.0
 
+enable-ipc = true
+
+line-size = 1
+
+
+padding = 2
+module-margin = 2
+border-size = 0
+border-color = ${colors.foreground}
+
 font-0 = SF Pro Text:size=10;0
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = FontAwesome:size=10;0
+font-1 = FontAwesome:size=10;0
+font-2 = Material Icons:size=10 
+font-3 = font\-logos:size=10
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-module-margin-left = 1
-module-margin-right = 2
-
-cursor-click = pointer
-cursor-scroll = ns-resize
-
 overide-redirect = true
 wm-restack = bspwm
 
-[bar/music]
+[bar/top]
 inherit = bar/base
-fixed-center = false 
-width = 50%
-offset-x = 0%
-modules-left = powermenu spotify
 
-[bar/tray]
+modules-left = spotify
+modules-center = date
+modules-right = wlan backlight pulseaudio battery powermenu
+
+tray-position = none
+
+[bar/bottom]
 inherit = bar/base
-enable-ipc = 
-offset-x = 50%
-width = 30%
-tray-position = right
-tray-padding = 2
-modules-right = backlight pulseaudio 
-
-[bar/date]
-inherit = bar/base
-offset-x = 80%
-width = 20%
-modules-right =  battery date 
-
-[bar/wsnumber]
-inherit = bar/base
-fixed-center = true 
-width = 100%
-
-line-size = 4
-line-color = #f00
-
-modules-left = bspwm
-modules-right = xkeyboard  
-
+modules-left = launcher bspwm xwindow
+modules-right = xkeyboard
+tray-position =  right
 bottom = true
+;  _ __ ___   ___   __| |_   _| | ___  ___ 
+; | '_ ` _ \ / _ \ / _` | | | | |/ _ \/ __|
+; | | | | | | (_) | (_| | |_| | |  __/\__ \
+; |_| |_| |_|\___/ \__,_|\__,_|_|\___||___/
 
 
-;==========================================================
-
-;====================Modules===============================
 [module/bspwm]
 type = internal/bspwm
 
@@ -105,7 +96,7 @@ label-occupied = %index%
 label-occupied-padding = 2
 label-occupied-underline = ${colors.foreground}
 
-label-urgent = %index%!
+label-urgent = %index%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
@@ -123,99 +114,49 @@ card = amdgpu_bl0
 format = <label> 
 label =  %percentage%%
 
-# bar-width = 10
-# bar-indicator = |
-# bar-indicator-foreground = ${colors.foreground}
-# bar-indicator-font = 2
-# bar-fill = ─
-# bar-fill-font = 2
-# bar-fill-foreground = ${colors.primary}
-# bar-empty = ─
-# bar-empty-font = 2
-# bar-empty-foreground = ${colors.foreground-alt}
-
 [module/wlan]
 type = internal/network
 interface = wlp2s0
 interval = 3.0
 
 format-connected = <label-connected>
-label-connected =  %downspeed% | %essid% 
+label-connected =  %essid%
 
 format-disconnected = <label-disconnected> 
-label-disconnected = " No signal"
+label-disconnected = " No signal"
 format-disconnected-foreground = ${colors.alert}
 
 [module/date]
 type = internal/date
-interval = 5
-
-date =
-date-alt = " %Y-%m-%d"
-
-time = %H:%M
-time-alt = %H:%M:%S
+interval = 10
+date =  %A, %b %d
+time =  %H:%M
 
 format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.secondary}
 
-label = %date% %time%
-
-[module/alsa]
-type = internal/alsa
-
-format-volume = <ramp-volume> <label-volume>
-label-volume = %percentage%%
-label-volume-foreground = ${colors.foreground}
-
-label-muted =   %percentage%%
-label-muted-foreground = ${colors.foreground}
-label-muted-background = ${colors.alert}
-
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-
-# ramp-headphones-0 = l
-# ramp-headphones-1 = h
-
-# bar-volume-width = 10
-# bar-volume-foreground-0 = ${colors.primary}
-# bar-volume-foreground-1 = ${colors.primary}
-# bar-volume-foreground-2 = ${colors.primary}
-# bar-volume-foreground-3 = ${colors.primary}
-# bar-volume-foreground-4 = ${colors.primary}
-# bar-volume-foreground-5 = ${colors.danger}
-# bar-volume-foreground-6 = ${colors.alert}
-# bar-volume-gradient = false
-# bar-volume-indicator = |
-# bar-volume-indicator-font = 2
-# bar-volume-fill = ─
-# bar-volume-fill-font = 2
-# bar-volume-empty = ─
-# bar-volume-empty-font = 2
-# bar-volume-empty-foreground = ${colors.foreground-alt}
+label = "%date%  %time%"
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-use-ui-max = true
+use-ui-max = false
 
 interval = 5
 
-format-volume = <ramp-volume> <label-volume>
-label-volume = %percentage%%
+format-muted-margin-left= 2
+format-volume = <ramp-volume><label-volume>
+label-volume = %percentage:3:3%%
 label-volume-foreground = ${colors.foreground}
 
-label-muted =   %percentage%%
+label-muted =   "%percentage:3:3%%"
 label-muted-foreground = ${colors.foreground}
 label-muted-background = ${colors.alert}
-
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
 
 click-right = pavucontrol
+
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:30:...%
@@ -237,52 +178,27 @@ label-indicator-background = ${colors.background-alt}
 type = internal/battery
 battery = BAT1
 adapter = ACAD
-full-at = 95
+full-at = 99
 
-format-charging-prefix = " "
-format-charging-prefix-foreground = ${colors.foreground}
-format-charging = <ramp-capacity> <label-charging>
-label-charging = %percentage%% 
-label-charging-foreground = ${colors.foreground}
-format-discharging =  <ramp-capacity> <label-discharging> 
-label-discharging = %percentage%% 
-label-discharging-foreground = ${colors.foreground-alt}
+format-charging = <label-charging>
+label-charging = "%percentage%%"
+format-discharging = <label-discharging> 
+label-discharging = "%percentage%%" 
 format-full = <label-full>
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground}
-label-full = Fully charged
+label-full = "%percentage%%"
 label-full-foreground = ${colors.foreground}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-ramp-capacity-0-foreground = ${colors.alert}
-ramp-capacity-1-foreground = ${colors.alert}
-ramp-capacity-2-foreground = ${colors.foreground}
-ramp-capacity-3-foreground = ${colors.foreground}
-ramp-capacity-4-foreground = ${colors.foreground}
-
-animation-charging-0 =  
-animation-charging-1 =  
-animation-charging-2 =  
-animation-charging-foreground = ${colors.foreground}
-animation-charging-framerate = 750
-
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground} 
-animation-discharging-framerate = 750
+poll-intervall = 5
 
 [module/spotify]
 type = custom/script
-interval = 1
-format-prefix = " "
+exec = playerctl -p spotify metadata --format '{{artist}} - {{title}}'
+exec-if = "pgrep spotify"
 format = <label>
-format-foreground= ${colors.foreground} 
-exec = python $HOME/.config/polybar/scripts/spotify_status.py -f '{play_pause} {artist} - {song}' -t 45
+format-prefix = " "
+format-padding = 1
+tail = true
+interval = 1
 
 [module/powermenu]
 type = custom/menu
@@ -291,10 +207,10 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = "    "
+label-open = ""
 label-open-foreground = ${colors.foreground}
 label-open-background = ${colors.background}
-label-close = "    "
+label-close = ""
 label-close-foreground = ${colors.foreground}
 label-close-background = ${colors.background}
 label-separator = |

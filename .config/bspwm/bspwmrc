@@ -10,9 +10,6 @@ dunst &
 # Setting up wallpaper
 feh --bg-scale ~/Pictures/wallpapers-ii/wallpapers/ricardo-braham-turtles-in-playa-del-carmen-mexico.jpg &
 
-# Setting up Pulseaudio system tray
-# pasystray &
-
 # Updating image for lockscreen
 # betterlockscreen -u ~/Documents/wallpapers/nord/004.jpg & 
 
@@ -27,7 +24,6 @@ natural_scrolling_id=`xinput list-props $id | \
 
 # Set the property to true
 xinput --set-prop $id $natural_scrolling_id 1
-
 
 # Setting up bspwm
 
@@ -44,8 +40,3 @@ bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
-
-# Setting rules
-
-bspc rule -a Zathura state=tiled
-bspc rule -a Zoom state=floating
